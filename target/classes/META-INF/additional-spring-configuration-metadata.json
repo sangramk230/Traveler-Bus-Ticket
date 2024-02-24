@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "JAVA_OPTS",
+  "type": "java.lang.String",
+  "description": "A description for 'JAVA_OPTS'"
+}]}
