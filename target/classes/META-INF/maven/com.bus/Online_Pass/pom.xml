@@ -48,9 +48,11 @@
 		    <version>10.1.17</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-actuator</artifactId>
+		    <groupId>com.razorpay</groupId>
+		    <artifactId>razorpay-java</artifactId>
+		    <version>1.4.5</version>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

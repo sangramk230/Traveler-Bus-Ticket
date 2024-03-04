@@ -47,7 +47,7 @@ public class AdminService {
 		}
 	}
 
-	public List<Ticket> getPendingTickets() {
+	public List<AdminViewDetails> getPendingTickets() {
 		return daoMethods.getTicketsByStatus("Pending");
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bus.entity.User;
@@ -22,6 +23,7 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(path = "api/user/", method = RequestMethod.POST)
 public class UserController {
 	@Autowired
 	private HttpServletRequest request;
@@ -35,7 +37,7 @@ public class UserController {
 	static HttpSession httpsession;
 
 	@RequestMapping("signup")
-	private void signUp(@RequestBody User user) {
+	private void signUp(@RequestBody User user) throws Exception {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.persist(user);
@@ -44,7 +46,8 @@ public class UserController {
 	}
 
 	@GetMapping("login/{email}/{password}")
-	public ResponseEntity<Boolean> loginUser(@PathVariable String email, @PathVariable String password) {
+	public ResponseEntity<Boolean> loginUser(@PathVariable String email, @PathVariable String password)
+			throws Exception {
 		httpsession = request.getSession();
 		boolean isAuthenticated = userService.loginUser(email, password);
 		if (isAuthenticated) {
@@ -57,7 +60,7 @@ public class UserController {
 	}
 
 	@GetMapping("profile")
-	public ResponseEntity<List<User>> profile() {
+	public ResponseEntity<List<User>> profile() throws Exception {
 		HttpSession session = AdminController.httpsession;
 		HttpSession session1 = UserController.httpsession;
 		session.getAttribute("loggedInAdmin");

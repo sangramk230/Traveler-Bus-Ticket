@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\sangr\OneDrive\Documents\GitHub\Traveler-Bus-Ticket"/>
 			<item value="C:\Users\sangr\Online Pass System\Bus\Java\Online_Pass"/>
 		</list>
 		<list key="projectNameTemplate">

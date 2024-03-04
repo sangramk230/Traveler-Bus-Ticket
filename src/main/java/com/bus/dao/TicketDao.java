@@ -22,6 +22,9 @@ public class TicketDao {
 	public boolean addTicket(Ticket ticket) {
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
+			ticket.setCheckstatus("Pending");
+			System.out.println("dao" + ticket.getCheckstatus());
+
 			session.save(ticket);
             tx.commit();
             return true;
@@ -42,20 +45,6 @@ public class TicketDao {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
-    }
-
-    public List<Ticket> updateTicket(Ticket ticket) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.update(ticket);
-            tx.commit();
-            return session.createQuery("FROM Ticket WHERE pid = :pid", Ticket.class)
-                          .setParameter("pid", ticket.getPid())
-                          .getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
         }
     }
 
@@ -91,18 +80,7 @@ public class TicketDao {
         }
     }
 
-	public List<Ticket> deleteByInvalid(String status) {
-		System.out.println(status);
-		try (Session session = sessionFactory.openSession()) {
-			Query<Ticket> query = session.createQuery("Delete Ticket WHERE status = :status");
-			query.setParameter("status", status);
-			System.out.println(query.getResultList());
-			return query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ArrayList<>();
-		}
-	}
+
 
 
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bus.entity.AdminViewDetails;
-import com.bus.entity.Ticket;
 import com.bus.entity.User;
 import com.bus.service.AdminService;
 
@@ -22,6 +21,7 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+@RequestMapping("api/admin/")
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -31,8 +31,9 @@ public class AdminController {
 
 	static HttpSession httpsession;
 
-	@RequestMapping("admin/{email}/{password}")
-	public ResponseEntity<Boolean> validate(@PathVariable String email, @PathVariable String password) {
+	@GetMapping("adminlogin/{email}/{password}")
+	public ResponseEntity<Boolean> validate(@PathVariable String email, @PathVariable String password)
+			throws Exception {
 		System.out.println(email);
 		boolean answer = adminService.login(email, password);
 		System.out.println(answer);
@@ -48,7 +49,7 @@ public class AdminController {
 	}
 
 	@GetMapping("viewuser")
-	public ResponseEntity<List<User>> viewUser() {
+	public ResponseEntity<List<User>> viewUser() throws Exception {
 		List<User> users = adminService.viewUser();
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
@@ -61,7 +62,7 @@ public class AdminController {
 	}
 
 	@GetMapping("adminview/{id}")
-	public ResponseEntity<List<AdminViewDetails>> adminView(@PathVariable int id) {
+	public ResponseEntity<List<AdminViewDetails>> adminView(@PathVariable int id) throws Exception {
 		System.out.println();
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
@@ -69,48 +70,51 @@ public class AdminController {
 			return new ResponseEntity<List<AdminViewDetails>>(adminService.adminView(id), HttpStatus.OK);
 
 		} else {
-			return new ResponseEntity<List<AdminViewDetails>>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
 		}
 	}
 
-	// Admin endpoint to view pending tickets
 	@GetMapping("pending-tickets")
-	public ResponseEntity<List<Ticket>> getPendingTickets() {
+	public ResponseEntity<List<AdminViewDetails>> getPendingTickets() throws Exception {
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
 		if (session != null) {
-			return new ResponseEntity<>(adminService.getPendingTickets(), HttpStatus.OK);
+			List<AdminViewDetails> bb = adminService.getPendingTickets();
+					if (bb != null) {
+						return new ResponseEntity<>(bb, HttpStatus.OK);
+
+					} else {
+						return new ResponseEntity<>( HttpStatus.OK);
+					}
 
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		}
 	}
-
-	// Admin endpoint to approve or reject a ticket
 	@PutMapping("approve-ticket/{pid}")
-	public ResponseEntity<String> approveTicket(@PathVariable int pid) {
+	public ResponseEntity<Boolean> approveTicket(@PathVariable int pid) throws Exception {
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
 		boolean updated = adminService.updateTicketStatus(pid, "Approved");
 		if (updated && session != null) {
-			return new ResponseEntity<>("Ticket approved successfully", HttpStatus.OK);
+			return new ResponseEntity<>(true, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Failed to approve ticket", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PutMapping("reject-ticket/{pid}")
-	public ResponseEntity<String> rejectTicket(@PathVariable int pid) {
+	public ResponseEntity<Boolean> rejectTicket(@PathVariable int pid) throws Exception {
 		System.out.println(pid);
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
 		boolean updated = adminService.updateTicketStatus(pid, "Rejected");
 		if (updated && session != null) {
-			return new ResponseEntity<>("Ticket rejected successfully", HttpStatus.OK);
+			return new ResponseEntity<>(true, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Failed to reject ticket", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 		}
 	}
 

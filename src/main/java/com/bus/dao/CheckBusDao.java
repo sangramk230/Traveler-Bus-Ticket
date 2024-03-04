@@ -1,6 +1,8 @@
 package com.bus.dao;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bus.entity.Checkbus;
+import com.bus.entity.Ticket;
 
 @Repository
 public class CheckBusDao {
@@ -19,22 +22,18 @@ public class CheckBusDao {
 	Checkbus checkbus;
 
 	public boolean addBus(Checkbus checkbus) {
-		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
+			System.out.println("daooo" + checkbus);
 			if (checkbus != null) {
 				session.save(checkbus);
 				tx.commit();
+
 				return true;
 			} else {
-				session.save(checkbus);
 				tx.rollback();
 				return false;
 			}
-		} catch (Exception e) {
-			return false;
-		}
-
 	}
 
 	public LinkedList<Checkbus> isSeatAvailable(String firstlocation, String lastlocation, String bustype) {
@@ -56,6 +55,33 @@ public class CheckBusDao {
 	        e.printStackTrace();
 	        return null;
 	    }
+	}
+
+	public List allBus(String status) {
+		try {
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createQuery("from Checkbus where status =: status");
+			query.setParameter("status", status);
+			tx.commit();
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Ticket> deleteByInvalid(String status) {
+		System.out.println(status);
+		try (Session session = sessionFactory.openSession()) {
+			Query<Ticket> query = session.createQuery("Delete Ticket WHERE status = :status");
+			query.setParameter("status", status);
+			System.out.println(query.list());
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<>();
+		}
 	}
 
 }

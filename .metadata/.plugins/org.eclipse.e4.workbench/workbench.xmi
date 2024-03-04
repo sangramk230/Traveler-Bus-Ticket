@@ -134,11 +134,11 @@
                 <tags>categoryTag:Debug</tags>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_YQG8DslZEe6slpkfZ9D4Qw" containerData="8000">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_YQG8DslZEe6slpkfZ9D4Qw" containerData="8000" selectedElement="_YQG8FclZEe6slpkfZ9D4Qw">
               <children xsi:type="basic:PartSashContainer" xmi:id="_YQG8D8lZEe6slpkfZ9D4Qw" containerData="8000" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_YQG8EMlZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.editorss" containerData="8000" ref="_YEdssMlZEe6slpkfZ9D4Qw"/>
-                <children xsi:type="basic:PartStack" xmi:id="_YQG8EclZEe6slpkfZ9D4Qw" elementId="topRight" containerData="2000" selectedElement="_YQG8EslZEe6slpkfZ9D4Qw">
-                  <children xsi:type="advanced:Placeholder" xmi:id="_YQG8EslZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.views.ContentOutline" ref="_YP784clZEe6slpkfZ9D4Qw" closeable="true">
+                <children xsi:type="basic:PartStack" xmi:id="_YQG8EclZEe6slpkfZ9D4Qw" elementId="topRight" toBeRendered="false" containerData="2000">
+                  <children xsi:type="advanced:Placeholder" xmi:id="_YQG8EslZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.views.ContentOutline" toBeRendered="false" ref="_YP784clZEe6slpkfZ9D4Qw" closeable="true">
                     <tags>View</tags>
                     <tags>categoryTag:General</tags>
                   </children>
@@ -442,7 +442,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_aNkMlZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ygM318seEe6QOq9YcsuyEQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_XhOeH8lZEe6slpkfZ9D4Qw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_ScaRANR7Ee6lhq9iwYf5pQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_XhOeH8lZEe6slpkfZ9D4Qw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_aNkclZEe6slpkfZ9D4Qw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -450,8 +450,8 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_aNk8lZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ygXP4MseEe6QOq9YcsuyEQ" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_XhLZeclZEe6slpkfZ9D4Qw"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ygXP4cseEe6QOq9YcsuyEQ" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_XhN1v8lZEe6slpkfZ9D4Qw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_ScaRBtR7Ee6lhq9iwYf5pQ" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_XhLZeclZEe6slpkfZ9D4Qw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_ScaRB9R7Ee6lhq9iwYf5pQ" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_XhN1v8lZEe6slpkfZ9D4Qw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_a0oMlZEe6slpkfZ9D4Qw" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -478,7 +478,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_a0pMlZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_ygbhUsseEe6QOq9YcsuyEQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_XhOdwMlZEe6slpkfZ9D4Qw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_ScaRDdR7Ee6lhq9iwYf5pQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_XhOdwMlZEe6slpkfZ9D4Qw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_X_a0pclZEe6slpkfZ9D4Qw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1114,6 +1114,11 @@
   <bindingTables xmi:id="_YEqhB8lZEe6slpkfZ9D4Qw" bindingContext="_YEqhBslZEe6slpkfZ9D4Qw"/>
   <bindingTables xmi:id="_YEqhCclZEe6slpkfZ9D4Qw" bindingContext="_YEqhCMlZEe6slpkfZ9D4Qw"/>
   <bindingTables xmi:id="_YEqhC8lZEe6slpkfZ9D4Qw" bindingContext="_YEqhCslZEe6slpkfZ9D4Qw"/>
+  <bindingTables xmi:id="_l1TgANMVEe669NvH8qJZyg" elementId="org.batcheditor.editors.BatchEditor.context" bindingContext="_l0wtcNMVEe669NvH8qJZyg">
+    <bindings xmi:id="_l1XxcNMVEe669NvH8qJZyg" keySequence="CTRL+SHIFT+P" command="_l0tqIdMVEe669NvH8qJZyg"/>
+    <bindings xmi:id="_l1ZmoNMVEe669NvH8qJZyg" keySequence="CTRL+7" command="_l0tqINMVEe669NvH8qJZyg"/>
+    <bindings xmi:id="_l1bb0NMVEe669NvH8qJZyg" keySequence="CTRL+O" command="_l0tqItMVEe669NvH8qJZyg"/>
+  </bindingTables>
   <rootContext xmi:id="_XgT2yslZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.contexts.dialogAndWindow" contributorURI="platform:/plugin/org.eclipse.platform" name="In Dialogs and Windows" description="Either a dialog or a window is open">
     <children xmi:id="_XgT2y8lZEe6slpkfZ9D4Qw" elementId="org.eclipse.ui.contexts.window" contributorURI="platform:/plugin/org.eclipse.platform" name="In Windows" description="A window is open">
       <children xmi:id="_XgT2zMlZEe6slpkfZ9D4Qw" elementId="org.eclipse.e4.ui.contexts.views" contributorURI="platform:/plugin/org.eclipse.platform" name="%bindingcontext.name.bindingView"/>
@@ -1157,6 +1162,7 @@
         </children>
         <children xmi:id="_XhYN-MlZEe6slpkfZ9D4Qw" elementId="org.eclipse.jdt.ui.propertiesEditorScope" name="Editing Properties Files" description="Editing Properties Files Context"/>
         <children xmi:id="_XhYN-8lZEe6slpkfZ9D4Qw" elementId="org.eclipse.jst.jsf.facesconfig.editorContext" name="In Faces Config Editor" description="Key binding context when using the Faces Config Editor"/>
+        <children xmi:id="_l0wtcNMVEe669NvH8qJZyg" elementId="org.batcheditor.editors.BatchEditor.context" name="Batch context" description="Editing batch files"/>
       </children>
       <children xmi:id="_XhYNxclZEe6slpkfZ9D4Qw" elementId="org.eclipse.compare.compareEditorScope" name="Comparing in an Editor" description="Comparing in an Editor"/>
       <children xmi:id="_XhYNx8lZEe6slpkfZ9D4Qw" elementId="org.eclipse.debug.ui.memoryview" name="In Memory View" description="In memory view"/>
@@ -3113,6 +3119,9 @@
   <commands xmi:id="_X7uAi8lZEe6slpkfZ9D4Qw" elementId="AUTOGEN:::org.eclipse.mylyn.tasks.ui.actions.view/org.eclipse.mylyn.context.ui.actions.tasklist.focus" commandName="Focus on Workweek" description="Focus on Workweek" category="_XhDdu8lZEe6slpkfZ9D4Qw"/>
   <commands xmi:id="_X7uAjMlZEe6slpkfZ9D4Qw" elementId="AUTOGEN:::org.eclipse.pde.ui.logViewActions/org.eclipse.jdt.debug.ui.LogViewActions.showStackTrace" commandName="Show Stack Trace in Console View" description="Show Stack Trace in Console View" category="_XhDdu8lZEe6slpkfZ9D4Qw"/>
   <commands xmi:id="_X7uAjclZEe6slpkfZ9D4Qw" elementId="AUTOGEN:::org.eclipse.ui.articles.action.contribution.view/org.eclipse.wst.wsi.ui.internal.actions.actionDelegates.ValidateWSIProfileActionDelegate" commandName="WS-I Profile Validator" description="Validate WS-I Message Log File" category="_XhDdu8lZEe6slpkfZ9D4Qw"/>
+  <commands xmi:id="_l0tqINMVEe669NvH8qJZyg" elementId="batcheditor.editor.commands.source.toggleComment" commandName="Toggle comment" description="Toggle comment in selected line(s)" category="_l0oxoNMVEe669NvH8qJZyg"/>
+  <commands xmi:id="_l0tqIdMVEe669NvH8qJZyg" elementId="batcheditor.editor.commands.gotomatchingbracket" commandName="Goto matching bracket" description="Goto matching bracket inside gradle document" category="_l0oxoNMVEe669NvH8qJZyg"/>
+  <commands xmi:id="_l0tqItMVEe669NvH8qJZyg" elementId="batcheditor.editor.commands.quickoutline" commandName="Quick outline" description="Show quick outline dialog" category="_l0oxoNMVEe669NvH8qJZyg"/>
   <addons xmi:id="_XgT2zslZEe6slpkfZ9D4Qw" elementId="org.eclipse.e4.core.commands.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_XgT2z8lZEe6slpkfZ9D4Qw" elementId="org.eclipse.e4.ui.contexts.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_XgT20MlZEe6slpkfZ9D4Qw" elementId="org.eclipse.e4.ui.bindings.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -3184,4 +3193,5 @@
   <categories xmi:id="_XhDd18lZEe6slpkfZ9D4Qw" elementId="org.eclipse.gef.category.view" name="View" description="View"/>
   <categories xmi:id="_XhDd2MlZEe6slpkfZ9D4Qw" elementId="org.eclipse.jdt.ui.category.source" name="Source" description="Java Source Actions"/>
   <categories xmi:id="_XhDd2clZEe6slpkfZ9D4Qw" elementId="org.eclipse.pde.runtime.spy.commands.category" name="Spy"/>
+  <categories xmi:id="_l0oxoNMVEe669NvH8qJZyg" elementId="batcheditor.commands.category" name="Batch editor" description="Batch editor"/>
 </application:Application>

@@ -11,6 +11,25 @@ public class Ticket {
 	private String firstlocation, lastlocation, bustype, date, status, checkstatus;
 	private double price;
 
+	public Ticket() {
+		super();
+	}
+
+	public Ticket(int pid, int addseat, int id, int busid, String firstlocation, String lastlocation, String bustype,
+			String date, String status, double price) {
+		this.pid = pid;
+		this.addseat = addseat;
+		this.id = id;
+		this.busid = busid;
+		this.firstlocation = firstlocation;
+		this.lastlocation = lastlocation;
+		this.bustype = bustype;
+		this.date = date;
+		this.status = status;
+		this.checkstatus = "Pending";
+		this.price = price;
+	}
+
 	public int getPid() {
 		return this.pid;
 	}

@@ -84,17 +84,27 @@ public class AdminDao {
 		}
 	}
 
-	public List<Ticket> getTicketsByStatus(String checkstatus) {
-		System.out.println(checkstatus);
-		try (Session session = sessionFactory.openSession()) {
-			Query<Ticket> query = session.createQuery("FROM Ticket WHERE checkstatus = :checkstatus");
-			query.setParameter("checkstatus", checkstatus);
-			System.out.println(query.getResultList());
-			return query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ArrayList<>();
+	public List<AdminViewDetails> getTicketsByStatus(String checkstatus) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "SELECT t, u FROM Ticket t INNER JOIN User u ON t.id = u.id  Where  t.checkstatus =: checkstatus";
+		Query query = session.createQuery(hql);
+		query.setParameter("checkstatus", checkstatus);
+		List<Object[]> results = query.list();
+
+		List<AdminViewDetails> adminViewDetailsList = new ArrayList<>();
+		for (Object[] result : results) {
+			Ticket ticket = (Ticket) result[0];
+			User user = (User) result[1];
+
+			AdminViewDetails adminViewDetails = new AdminViewDetails(ticket, user);
+			adminViewDetailsList.add(adminViewDetails);
 		}
+
+		tx.commit();
+		session.close();
+		System.out.println(adminViewDetailsList);
+		return adminViewDetailsList;
 	}
 
 	public Ticket getTicketById(int pid) {
