@@ -50,4 +50,8 @@ public class AdminService {
 	public List<AdminViewDetails> getPendingTickets() {
 		return daoMethods.getTicketsByStatus("Pending");
 	}
+
+	public boolean cancelBus(int busid) {
+		return daoMethods.cancelBus(busid);
+	}
 }

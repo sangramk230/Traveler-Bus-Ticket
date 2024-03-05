@@ -47,14 +47,32 @@ public class CheckBusController {
 
 	@GetMapping("allbus")
 	public ResponseEntity<List<Checkbus>> allBus() throws Exception {
-		HttpSession session = UserController.httpsession;
-		HttpSession session1 = AdminController.httpsession;
-		List<Checkbus> bb = checkBusService.allBus();
-		if (session != null && bb != null || session1 != null) {
+		HttpSession adminSession = AdminController.httpsession;
+		System.out.println("adminnnnnnnn" + adminSession);
 
-			return new ResponseEntity<List<Checkbus>>(bb, HttpStatus.OK);
+		HttpSession userSession = UserController.httpsession;
+		System.out.println("userrrrrrr" + userSession);
+
+		List<Checkbus> bb = bb = checkBusService.allBus();
+
+		if (userSession != null) {
+			userSession.getAttribute("loggedInUser");
+			System.out.println(userSession);
+			System.out.println(bb);
+			return new ResponseEntity<>(bb, HttpStatus.OK);
+
+		} else if (adminSession != null) {
+
+			adminSession.getAttribute("loggedInAdmin");
+			System.out.println(adminSession);
+			System.out.println("admin" + bb);
+
+			return new ResponseEntity<>(bb, HttpStatus.OK);
+
 		} else {
-			return new ResponseEntity<List<Checkbus>>(HttpStatus.OK);
+			System.out.println(bb);
+
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		}
 	}

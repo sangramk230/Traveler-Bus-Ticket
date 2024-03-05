@@ -57,14 +57,15 @@ public class CheckBusDao {
 	    }
 	}
 
-	public List allBus(String status) {
+	public List allBus() {
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
-			Query query = session.createQuery("from Checkbus where status =: status");
-			query.setParameter("status", status);
+			Query query = session.createQuery("from Checkbus");
+			List<Checkbus> buses = query.list();
 			tx.commit();
-			return query.list();
+
+			return buses;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

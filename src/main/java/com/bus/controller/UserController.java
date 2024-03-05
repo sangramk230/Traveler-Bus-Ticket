@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bus.entity.User;
@@ -23,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "api/user/", method = RequestMethod.POST)
+@RequestMapping("api/user/")
 public class UserController {
 	@Autowired
 	private HttpServletRequest request;
@@ -61,20 +60,16 @@ public class UserController {
 
 	@GetMapping("profile")
 	public ResponseEntity<List<User>> profile() throws Exception {
-		HttpSession session = AdminController.httpsession;
-		HttpSession session1 = UserController.httpsession;
-		session.getAttribute("loggedInAdmin");
-		session1.getAttribute("loggedInUser");
+		HttpSession userSession = UserController.httpsession;
+		List<User> bb = userService.profile();
+		System.out.println("frttttttttt" + bb);
+		if (userSession != null && bb != null) {
+				userSession.getAttribute("loggedInUser");
+				System.out.println(userSession);
+				System.out.println(bb);
+				return new ResponseEntity<>(bb, HttpStatus.OK);
 
-		if (httpsession != null) {
-			List<User> bb = userService.profile();
-			if (bb != null && session != null && session1 != null) {
-				return new ResponseEntity<List<User>>(bb, HttpStatus.OK);
 			} else {
-				return new ResponseEntity<List<User>>(HttpStatus.BAD_GATEWAY);
-			}
-
-		} else {
 			return new ResponseEntity<List<User>>(HttpStatus.UNAUTHORIZED);
 		}
 	}

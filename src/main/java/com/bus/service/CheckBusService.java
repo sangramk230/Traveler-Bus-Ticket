@@ -37,7 +37,7 @@ public class CheckBusService {
 	}
 
 	public List<Checkbus> allBus() {
-		List<Checkbus> bb = checkBusDao.allBus("Valid");
+		List<Checkbus> bb = checkBusDao.allBus();
 		if (bb == null) {
 			return null;
 		} else {

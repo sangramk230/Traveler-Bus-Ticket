@@ -113,4 +113,18 @@ public class AdminDao {
 		System.out.println(session.get(Ticket.class, pid));
 		return session.get(Ticket.class, pid);
 	}
+
+	public boolean cancelBus(int busid) {
+		try (Session session = sessionFactory.openSession()) {
+			Transaction tx = session.beginTransaction();
+			Query query = session.createQuery("delete from Checkbus where busid = :busid");
+			query.setParameter("busid", busid);
+			int rowsAffected = query.executeUpdate();
+			tx.commit();
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

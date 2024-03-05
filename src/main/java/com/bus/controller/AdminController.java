@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,10 +35,9 @@ public class AdminController {
 	@GetMapping("adminlogin/{email}/{password}")
 	public ResponseEntity<Boolean> validate(@PathVariable String email, @PathVariable String password)
 			throws Exception {
-		System.out.println(email);
-		boolean answer = adminService.login(email, password);
-		System.out.println(answer);
+		httpsession = request.getSession();
 
+		boolean answer = adminService.login(email, password);
 		if (answer) {
 			request.getSession().setAttribute("loggedInAdmin", email);
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
@@ -75,7 +75,7 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping("pending-tickets")
+	@GetMapping("pendingtickets")
 	public ResponseEntity<List<AdminViewDetails>> getPendingTickets() throws Exception {
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
@@ -93,7 +93,8 @@ public class AdminController {
 
 		}
 	}
-	@PutMapping("approve-ticket/{pid}")
+
+	@PutMapping("approveticket/{pid}")
 	public ResponseEntity<Boolean> approveTicket(@PathVariable int pid) throws Exception {
 		HttpSession session = request.getSession();
 		session.getAttribute("loggedInAdmin");
@@ -105,7 +106,7 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping("reject-ticket/{pid}")
+	@PutMapping("rejectticket/{pid}")
 	public ResponseEntity<Boolean> rejectTicket(@PathVariable int pid) throws Exception {
 		System.out.println(pid);
 		HttpSession session = request.getSession();
@@ -115,6 +116,22 @@ public class AdminController {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@DeleteMapping("cancelbus/{busid}")
+	public ResponseEntity<Boolean> cancelBus(@PathVariable int busid) throws Exception {
+		HttpSession session = UserController.httpsession;
+		session.getAttribute("loggedInAdmin");
+		if (session != null) {
+			boolean canceled = adminService.cancelBus(busid);
+			if (canceled) {
+				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+			}
+		} else {
+			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
 		}
 	}
 
