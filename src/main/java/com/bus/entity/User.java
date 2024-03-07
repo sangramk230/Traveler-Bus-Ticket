@@ -13,14 +13,14 @@ public class User {
 	private int id;
 	private String name, gender, password;
 	private Date dob;
-	private long phoneno;
+	private String phoneno;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String email, int id, String name, String gender, String password, Date dob, long phoneno) {
+	public User(String email, int id, String name, String gender, String password, Date dob, String phoneno) {
 		super();
 		this.email = email;
 		this.id = id;
@@ -79,13 +79,12 @@ public class User {
 		this.dob = dob;
 	}
 
-	public long getPhoneno() {
+	public String getPhoneno() {
 		return this.phoneno;
 	}
 
-	public void setPhoneno(long phoneno) {
+	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
-
 
 }

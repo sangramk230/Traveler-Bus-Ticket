@@ -42,8 +42,6 @@ public class UserDao {
 
 	}
 
-
-
 	public List<User> profile() {
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("From User");

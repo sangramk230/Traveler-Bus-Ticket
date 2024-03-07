@@ -58,14 +58,14 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("profile")
+	@GetMapping("profileUser")
 	public ResponseEntity<List<User>> profile() throws Exception {
-		HttpSession userSession = UserController.httpsession;
+
 		List<User> bb = userService.profile();
 		System.out.println("frttttttttt" + bb);
-		if (userSession != null && bb != null) {
-				userSession.getAttribute("loggedInUser");
-				System.out.println(userSession);
+		if (httpsession != null && bb != null) {
+			httpsession.getAttribute("loggedInUser");
+			System.out.println(httpsession);
 				System.out.println(bb);
 				return new ResponseEntity<>(bb, HttpStatus.OK);
 

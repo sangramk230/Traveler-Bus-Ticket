@@ -1,6 +1,7 @@
 package com.bus.entity;
 
 public class TicketDetails {
+
 	private Ticket ticket;
 	private Checkbus checkbus;
 

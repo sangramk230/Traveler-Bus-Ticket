@@ -127,4 +127,11 @@ public class AdminDao {
 			return false;
 		}
 	}
+
+	public List<User> profile() {
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("From Admin");
+		return query.list();
+
+	}
 }

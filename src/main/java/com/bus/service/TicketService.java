@@ -11,13 +11,8 @@ import com.bus.entity.TicketDetails;
 
 @Service
 public class TicketService {
-
 	@Autowired
 	private TicketDao ticketDao;
-
-	public boolean addTicket(Ticket ticket) {
-		return ticketDao.addTicket(ticket);
-	}
 
 	public boolean cancelTicket(int pid) {
 		return ticketDao.cancelTicket(pid);
@@ -28,5 +23,11 @@ public class TicketService {
 	public List<Object[]> viewTicketByPid(int pid) {
 		return ticketDao.viewTicketByPid(pid);
 	}
+
+	public boolean addTicket(Ticket ticket) {
+		return ticketDao.addTicket(ticket);
+	}
+
+
 
 }

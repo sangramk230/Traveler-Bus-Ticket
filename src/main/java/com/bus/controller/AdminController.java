@@ -51,9 +51,9 @@ public class AdminController {
 	@GetMapping("viewuser")
 	public ResponseEntity<List<User>> viewUser() throws Exception {
 		List<User> users = adminService.viewUser();
-		HttpSession session = request.getSession();
-		session.getAttribute("loggedInAdmin");
-		if (users != null && session != null) {
+		if (users != null && httpsession != null) {
+			httpsession.getAttribute("loggedInAdmin");
+
 			return ResponseEntity.ok(users);
 
 		} else {
@@ -64,9 +64,8 @@ public class AdminController {
 	@GetMapping("adminview/{id}")
 	public ResponseEntity<List<AdminViewDetails>> adminView(@PathVariable int id) throws Exception {
 		System.out.println();
-		HttpSession session = request.getSession();
-		session.getAttribute("loggedInAdmin");
-		if (session != null) {
+		if (httpsession != null) {
+			httpsession.getAttribute("loggedInAdmin");
 			return new ResponseEntity<List<AdminViewDetails>>(adminService.adminView(id), HttpStatus.OK);
 
 		} else {
@@ -77,11 +76,10 @@ public class AdminController {
 
 	@GetMapping("pendingtickets")
 	public ResponseEntity<List<AdminViewDetails>> getPendingTickets() throws Exception {
-		HttpSession session = request.getSession();
-		session.getAttribute("loggedInAdmin");
-		if (session != null) {
+		if (httpsession != null) {
 			List<AdminViewDetails> bb = adminService.getPendingTickets();
 					if (bb != null) {
+						httpsession.getAttribute("loggedInAdmin");
 						return new ResponseEntity<>(bb, HttpStatus.OK);
 
 					} else {
@@ -94,25 +92,27 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping("approveticket/{pid}")
-	public ResponseEntity<Boolean> approveTicket(@PathVariable int pid) throws Exception {
-		HttpSession session = request.getSession();
-		session.getAttribute("loggedInAdmin");
-		boolean updated = adminService.updateTicketStatus(pid, "Approved");
-		if (updated && session != null) {
+	@PutMapping("approveticket/{pid}/{phoneno}")
+	public ResponseEntity<Boolean> approveTicket(@PathVariable int pid, @PathVariable String phoneno) throws Exception {
+		System.out.println(phoneno);
+
+		boolean updated = adminService.updateTicketStatus(pid, phoneno, "Approved");
+		if (updated && httpsession != null) {
+			httpsession.getAttribute("loggedInAdmin");
+
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@PutMapping("rejectticket/{pid}")
-	public ResponseEntity<Boolean> rejectTicket(@PathVariable int pid) throws Exception {
-		System.out.println(pid);
-		HttpSession session = request.getSession();
-		session.getAttribute("loggedInAdmin");
-		boolean updated = adminService.updateTicketStatus(pid, "Rejected");
-		if (updated && session != null) {
+	@PutMapping("rejectticket/{pid}/{phoneno}")
+	public ResponseEntity<Boolean> rejectTicket(@PathVariable int pid, @PathVariable String phoneno) throws Exception {
+		System.out.println(phoneno);
+		boolean updated = adminService.updateTicketStatus(pid, phoneno, "Rejected");
+		if (updated && httpsession != null) {
+			httpsession.getAttribute("loggedInAdmin");
+
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
@@ -121,11 +121,11 @@ public class AdminController {
 
 	@DeleteMapping("cancelbus/{busid}")
 	public ResponseEntity<Boolean> cancelBus(@PathVariable int busid) throws Exception {
-		HttpSession session = UserController.httpsession;
-		session.getAttribute("loggedInAdmin");
-		if (session != null) {
+		if (httpsession != null) {
 			boolean canceled = adminService.cancelBus(busid);
 			if (canceled) {
+				httpsession.getAttribute("loggedInAdmin");
+
 				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
@@ -135,4 +135,19 @@ public class AdminController {
 		}
 	}
 
+	@GetMapping("profileAdmin")
+	public ResponseEntity<List<User>> profile() throws Exception {
+
+		List<User> bb = adminService.profile();
+		System.out.println("frttttttttt" + bb);
+		if (httpsession != null && bb != null) {
+			httpsession.getAttribute("loggedInAdmin");
+			System.out.println(httpsession);
+			System.out.println(bb);
+			return new ResponseEntity<>(bb, HttpStatus.OK);
+
+		} else {
+			return new ResponseEntity<List<User>>(HttpStatus.UNAUTHORIZED);
+		}
+	}
 }

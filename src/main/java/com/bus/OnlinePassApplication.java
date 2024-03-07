@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EntityScan("com")
 @ComponentScan("com")
 public class OnlinePassApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(OnlinePassApplication.class, args);
 	}
