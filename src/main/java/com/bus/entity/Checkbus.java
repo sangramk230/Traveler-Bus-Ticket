@@ -7,7 +7,8 @@ import jakarta.persistence.Id;
 public class Checkbus {
 @Id
 private Long busid;
-private Long avilableseat, contact;
+private Long avilableseat;
+private String contact;
 private double price;
 private String bustype, busno, firstlocation, lastlocation, date, status;
 
@@ -17,7 +18,7 @@ public Checkbus() {
 }
 
 
-public Checkbus(Long contact, String busno) {
+public Checkbus(String contact, String busno) {
 	super();
 	this.contact = contact;
 	this.busno = busno;
@@ -39,11 +40,11 @@ public void setAvilableseat(Long avilableseat) {
 	this.avilableseat = avilableseat;
 }
 
-public Long getContact() {
+public String getContact() {
 	return this.contact;
 }
 
-public void setContact(Long contact) {
+public void setContact(String contact) {
 	this.contact = contact;
 }
 

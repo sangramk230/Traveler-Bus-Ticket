@@ -31,7 +31,7 @@ public class TicketController {
 		HttpSession session = UserController.httpsession;
 		session.getAttribute("loggedInUser");
 		System.out.println(session);
-		boolean bb = ticketService.addTicket(ticket);
+		boolean bb = ticketService.addTicket(ticket, session.getAttribute("loggedInUser"));
 		System.out.println("ccc" + ticket.getCheckstatus());
 		if (bb) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
@@ -45,7 +45,7 @@ public class TicketController {
 		HttpSession session = UserController.httpsession;
 		session.getAttribute("loggedInUser");
 		if (session != null) {
-			boolean canceled = ticketService.cancelTicket(pid);
+			boolean canceled = ticketService.cancelTicket(pid, session.getAttribute("loggedInUser"));
 			if (canceled) {
 				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 			} else {
@@ -63,7 +63,8 @@ public class TicketController {
 
 		if (session != null) {
 			System.out.println(session);
-				return new ResponseEntity<List<TicketDetails>>(ticketService.viewTicket(), HttpStatus.OK);
+			return new ResponseEntity<List<TicketDetails>>(
+					ticketService.viewTicket(session.getAttribute("loggedInUser")), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}

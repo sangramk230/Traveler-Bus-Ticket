@@ -5,7 +5,6 @@ public class Payment {
 	private String key;
 	private String currency;
 	private Integer amount;
-
 	public Payment(String paymentid, String key, String currency, Integer amount) {
 		super();
 		this.paymentid = paymentid;

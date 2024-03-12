@@ -19,7 +19,7 @@ public class UserService {
 		return user != null && user.getPassword().equals(password);
 	}
 
-	public List<User> profile() {
-		return daoMethods.profile();
+	public List<User> profile(Object email) {
+		return daoMethods.profile(email);
 	}
 }

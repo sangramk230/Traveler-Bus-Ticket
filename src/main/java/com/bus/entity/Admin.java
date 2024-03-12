@@ -9,10 +9,14 @@ public class Admin {
 	private String email;
 	private int aid;
 	private String name, password;
-	private Long contact;
+	private String phoneno;
 
-	public Admin() {
-		super();
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getAid() {
@@ -31,14 +35,6 @@ public class Admin {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -47,19 +43,13 @@ public class Admin {
 		this.password = password;
 	}
 
-	public Long getContact() {
-		return this.contact;
+	public String getPhoneno() {
+		return this.phoneno;
 	}
 
-	public void setContact(Long contact) {
-		this.contact = contact;
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Admin [aid=" + this.aid + ", name=" + this.name + ", email=" + this.email + ", password="
-				+ this.password + ", contact=" + this.contact + "]";
-	}
 
 }

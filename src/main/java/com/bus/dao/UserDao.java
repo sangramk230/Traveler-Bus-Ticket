@@ -42,9 +42,10 @@ public class UserDao {
 
 	}
 
-	public List<User> profile() {
+	public List<User> profile(Object email) {
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("From User");
+		Query query = session.createQuery("From User where email =: email");
+		query.setParameter("email", email);
 		return query.list();
 
 	}

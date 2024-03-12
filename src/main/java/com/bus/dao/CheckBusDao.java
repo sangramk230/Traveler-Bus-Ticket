@@ -49,7 +49,7 @@ public class CheckBusDao {
 	        LinkedList<Checkbus> resultList = new LinkedList<>(query.list());
 	        tx.commit();
 			System.out.println(resultList);
-	        System.out.println("Service :" + lastlocation + " - " + firstlocation + " " + bustype);
+			System.out.println("Dao :" + lastlocation + " - " + firstlocation + " " + bustype);
 	        return resultList;
 	    } catch (Exception e) {
 	        e.printStackTrace();
