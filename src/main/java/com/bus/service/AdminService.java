@@ -21,7 +21,7 @@ public class AdminService {
 
 	private static final String ACCOUNT_SID = "AC533c114e1ab69f54a4b7e5081a20c7fc";
 
-	private static final String AUTH_TOKEN = "52cd9d4d2ed5f52518a7129ab0c02eda";
+	private static final String AUTH_TOKEN = "80ba828c80e1fa6a60860ce5bdf345a3";
 
 	private static final String FROM_PHONE_NUMBER = "+12185203533";
 
