@@ -61,7 +61,7 @@ public class CheckBusDao {
 		try {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
-			Query query = session.createQuery("from Checkbus");
+			Query query = session.createQuery("from Checkbus where status = 'Valid' ");
 			List<Checkbus> buses = query.list();
 			tx.commit();
 
