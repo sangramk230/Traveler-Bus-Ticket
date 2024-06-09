@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
-Build-Jdk-Spec: 21
+Build-Jdk-Spec: 17
 Implementation-Title: Online_Pass
 Implementation-Version: 0.0.1-SNAPSHOT
+Main-Class: com.bus.OnlinePassApplication
 Created-By: Maven Integration for Eclipse
 

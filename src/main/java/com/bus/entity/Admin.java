@@ -7,9 +7,9 @@ import jakarta.persistence.Id;
 public class Admin {
 	@Id
 	private String email;
-	private int aid;
+	private Integer aid;
 	private String name, password;
-	private String phoneno;
+	private String phoneno, role;
 
 	public String getEmail() {
 		return this.email;
@@ -19,11 +19,11 @@ public class Admin {
 		this.email = email;
 	}
 
-	public int getAid() {
+	public Integer getAid() {
 		return this.aid;
 	}
 
-	public void setAid(int aid) {
+	public void setAid(Integer aid) {
 		this.aid = aid;
 	}
 

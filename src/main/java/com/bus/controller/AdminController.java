@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/admin/")
 public class AdminController {
 	@Autowired
@@ -35,6 +35,7 @@ public class AdminController {
 	@GetMapping("adminlogin/{email}/{password}")
 	public ResponseEntity<Boolean> validate(@PathVariable String email, @PathVariable String password)
 			throws Exception {
+		System.out.print(email +"--" +password );
 		httpsession = request.getSession();
 
 		boolean answer = adminService.login(email, password);
@@ -62,7 +63,7 @@ public class AdminController {
 	}
 
 	@GetMapping("adminview/{id}")
-	public ResponseEntity<List<AdminViewDetails>> adminView(@PathVariable int id) throws Exception {
+	public ResponseEntity<List<AdminViewDetails>> adminView(@PathVariable Integer id) throws Exception {
 		System.out.println();
 		if (httpsession != null) {
 			httpsession.getAttribute("loggedInAdmin");
@@ -93,7 +94,8 @@ public class AdminController {
 	}
 
 	@PutMapping("approveticket/{pid}/{phoneno}")
-	public ResponseEntity<Boolean> approveTicket(@PathVariable int pid, @PathVariable String phoneno) throws Exception {
+	public ResponseEntity<Boolean> approveTicket(@PathVariable Integer pid, @PathVariable String phoneno)
+			throws Exception {
 		System.out.println(phoneno);
 
 		boolean updated = adminService.updateTicketStatus(pid, phoneno, "Approved");
@@ -107,7 +109,8 @@ public class AdminController {
 	}
 
 	@PutMapping("rejectticket/{pid}/{phoneno}")
-	public ResponseEntity<Boolean> rejectTicket(@PathVariable int pid, @PathVariable String phoneno) throws Exception {
+	public ResponseEntity<Boolean> rejectTicket(@PathVariable Integer pid, @PathVariable String phoneno)
+			throws Exception {
 		System.out.println(phoneno);
 		boolean updated = adminService.updateTicketStatus(pid, phoneno, "Rejected");
 		if (updated && httpsession != null) {
@@ -120,7 +123,7 @@ public class AdminController {
 	}
 
 	@DeleteMapping("cancelbus/{busid}")
-	public ResponseEntity<Boolean> cancelBus(@PathVariable int busid) throws Exception {
+	public ResponseEntity<Boolean> cancelBus(@PathVariable Integer busid) throws Exception {
 		if (httpsession != null) {
 			boolean canceled = adminService.cancelBus(busid);
 			if (canceled) {

@@ -1,65 +1,40 @@
 package com.bus.entity;
 
+
+
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Ticket {
+
 	@Id
-	int pid;
-	private int addseat, id, busid;
-	private String firstlocation, lastlocation, bustype, date, status, checkstatus;
-	private double price;
+	private Long pid;
+	private String firstlocation;
+	private String lastlocation;
+	private String bustype;
+	private Date date;
+	private Integer addseat;
+	private Long busid;
+	private Integer id;
+	private Double price;
+	private String status;
+	private String checkstatus;
+
 
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(int pid, int addseat, int id, int busid, String firstlocation, String lastlocation, String bustype,
-			String date, String status, double price) {
-		this.pid = pid;
-		this.addseat = addseat;
-		this.id = id;
-		this.busid = busid;
-		this.firstlocation = firstlocation;
-		this.lastlocation = lastlocation;
-		this.bustype = bustype;
-		this.date = date;
-		this.status = status;
-		this.checkstatus = "Pending";
-		this.price = price;
-	}
 
-	public int getPid() {
+	public Long getPid() {
 		return this.pid;
 	}
 
-	public void setPid(int pid) {
+	public void setPid(Long pid) {
 		this.pid = pid;
-	}
-
-	public int getAddseat() {
-		return this.addseat;
-	}
-
-	public void setAddseat(int addseat) {
-		this.addseat = addseat;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getBusid() {
-		return this.busid;
-	}
-
-	public void setBusid(int busid) {
-		this.busid = busid;
 	}
 
 	public String getFirstlocation() {
@@ -86,12 +61,44 @@ public class Ticket {
 		this.bustype = bustype;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Integer getAddseat() {
+		return this.addseat;
+	}
+
+	public void setAddseat(Integer addseat) {
+		this.addseat = addseat;
+	}
+
+	public Long getBusid() {
+		return this.busid;
+	}
+
+	public void setBusid(Long busid) {
+		this.busid = busid;
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Double getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	public String getStatus() {
@@ -108,22 +115,6 @@ public class Ticket {
 
 	public void setCheckstatus(String checkstatus) {
 		this.checkstatus = checkstatus;
-	}
-
-	public double getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	@Override
-	public String toString() {
-		return "Ticket [pid=" + this.pid + ", addseat=" + this.addseat + ", id=" + this.id + ", busid=" + this.busid
-				+ ", firstlocation=" + this.firstlocation + ", lastlocation=" + this.lastlocation + ", bustype="
-				+ this.bustype + ", date=" + this.date + ", status=" + this.status + ", checkstatus=" + this.checkstatus
-				+ ", price=" + this.price + "]";
 	}
 
 }

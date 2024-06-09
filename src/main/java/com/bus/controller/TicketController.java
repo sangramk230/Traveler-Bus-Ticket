@@ -20,7 +20,7 @@ import com.bus.service.TicketService;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/ticket/")
 public class TicketController {
 	@Autowired
@@ -29,9 +29,9 @@ public class TicketController {
 	@RequestMapping("add")
 	public ResponseEntity<Boolean> addTicket(@RequestBody Ticket ticket) throws Exception {
 		HttpSession session = UserController.httpsession;
-		session.getAttribute("loggedInUser");
-		System.out.println(session);
-		boolean bb = ticketService.addTicket(ticket, session.getAttribute("loggedInUser"));
+		Object loguser = session.getAttribute("loggedInUser");
+		System.out.println(session.getAttribute("loggedInUser") + "-" + loguser);
+		Boolean bb = ticketService.addTicket(ticket, loguser);
 		System.out.println("ccc" + ticket.getCheckstatus());
 		if (bb) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
@@ -41,11 +41,11 @@ public class TicketController {
 	}
 
 	@DeleteMapping("cancel/{pid}")
-	public ResponseEntity<Boolean> cancelTicket(@PathVariable int pid) throws Exception {
+	public ResponseEntity<Boolean> cancelTicket(@PathVariable Integer pid) throws Exception {
 		HttpSession session = UserController.httpsession;
 		session.getAttribute("loggedInUser");
 		if (session != null) {
-			boolean canceled = ticketService.cancelTicket(pid, session.getAttribute("loggedInUser"));
+			Boolean canceled = ticketService.cancelTicket(pid, session.getAttribute("loggedInUser"));
 			if (canceled) {
 				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 			} else {
@@ -71,7 +71,7 @@ public class TicketController {
 	}
 
 	@GetMapping("viewpid/{pid}")
-	public ResponseEntity<List> viewTicketByPid(@PathVariable int pid) throws Exception {
+	public ResponseEntity<List> viewTicketByPid(@PathVariable Integer pid) throws Exception {
 		HttpSession session = UserController.httpsession;
 		if (session != null) {
 			return new ResponseEntity<List>(ticketService.viewTicketByPid(pid), HttpStatus.OK);

@@ -19,26 +19,25 @@ public class TicketDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+	private Session session;
+
 	private Integer userIdCreate(Object email) {
 		Session session = sessionFactory.openSession();
-			String userQuery = "SELECT id FROM User WHERE email = :email";
-
-			Query query = session.createQuery(userQuery);
-			query.setParameter("email", email);
-			Integer userId = (Integer) query.uniqueResult();
-			return userId;
+		Query<Integer> query = session.createQuery("SELECT id FROM User WHERE email = :email");
+		query.setParameter("email", email);
+		return query.uniqueResult();
 
 	}
-
-	public boolean addTicket(Ticket ticket, Object email) {
-        try (Session session = sessionFactory.openSession()) {
+	public Boolean addTicket(Ticket ticket, Object email) {
+		try {
+			session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
 			Integer checkid = userIdCreate(email);
-            Transaction tx = session.beginTransaction();
 			if (checkid != null) {
 				ticket.setCheckstatus("Pending");
 				ticket.setId(checkid);
 				System.out.println("fgfgfgfffff" + ticket.getId());
-				session.save(ticket);
+				session.persist(ticket);
 				tx.commit();
 				return true;
 
@@ -53,15 +52,15 @@ public class TicketDao {
         }
     }
 
-	public boolean cancelTicket(int pid, Object email) {
+	public Boolean cancelTicket(Integer pid, Object email) {
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			Integer checkid = userIdCreate(email);
             Transaction tx = session.beginTransaction();
 			Query query = session.createQuery("delete from Ticket where pid = :pid AND id =: checkid");
             query.setParameter("pid", pid);
 			query.setParameter("checkid", checkid);
-            int rowsAffected = query.executeUpdate();
+			Integer rowsAffected = query.executeUpdate();
             tx.commit();
             return rowsAffected > 0;
         } catch (Exception e) {
@@ -72,8 +71,7 @@ public class TicketDao {
 
 	public List<TicketDetails> viewTicket(Object email) {
 		try {
-			Session session = sessionFactory.openSession();
-
+			session = sessionFactory.openSession();
 			Integer checkid = userIdCreate(email);
 			String ticketQuery = "SELECT t, c.busno, c.contact FROM Ticket t INNER JOIN Checkbus c ON t.busid = c.busid WHERE t.id = :userId";
 
@@ -99,8 +97,9 @@ public class TicketDao {
 		}
 	}
 
-	public List<Object[]> viewTicketByPid(int pid) {
-		try (Session session = sessionFactory.openSession()) {
+	public List<Object[]> viewTicketByPid(Integer pid) {
+		try {
+			session = sessionFactory.openSession();
 			Query<Object[]> query = session.createQuery(
 					"select t.firstlocation, t.lastlocation, t.bustype, t.date from Ticket t where t.pid = :pid",
 					Object[].class);

@@ -14,21 +14,20 @@ public class TicketService {
 	@Autowired
 	private TicketDao ticketDao;
 
-	public boolean cancelTicket(int pid ,Object email) {
+	public Boolean cancelTicket(Integer pid, Object email) {
 		return ticketDao.cancelTicket(pid, email);
 	}
 
 	public List<TicketDetails> viewTicket(Object email) {
 		return ticketDao.viewTicket(email);
 	}
-	public List<Object[]> viewTicketByPid(int pid) {
+
+	public List<Object[]> viewTicketByPid(Integer pid) {
 		return ticketDao.viewTicketByPid(pid);
 	}
 
-	public boolean addTicket(Ticket ticket, Object email) {
+	public Boolean addTicket(Ticket ticket, Object email) {
 		return ticketDao.addTicket(ticket, email);
 	}
-
-
 
 }

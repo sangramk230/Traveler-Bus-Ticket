@@ -35,7 +35,7 @@ public class AdminDao {
 		}
 	}
 
-	public List<AdminViewDetails> adminView(int id) {
+	public List<AdminViewDetails> adminView(Integer id) {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -107,19 +107,19 @@ public class AdminDao {
 		return adminViewDetailsList;
 	}
 
-	public Ticket getTicketById(int pid) {
+	public Ticket getTicketById(Integer pid) {
 		System.out.println("ddd" + pid);
 		Session session = sessionFactory.openSession();
 		System.out.println(session.get(Ticket.class, pid));
 		return session.get(Ticket.class, pid);
 	}
 
-	public boolean cancelBus(int busid) {
+	public boolean cancelBus(Integer busid) {
 		try (Session session = sessionFactory.openSession()) {
 			Transaction tx = session.beginTransaction();
 			Query query = session.createQuery("delete from Checkbus where busid = :busid");
 			query.setParameter("busid", busid);
-			int rowsAffected = query.executeUpdate();
+			Integer rowsAffected = query.executeUpdate();
 			tx.commit();
 			return rowsAffected > 0;
 		} catch (Exception e) {

@@ -10,7 +10,7 @@ public class User {
 
 	@Id
 	private String email;
-	private int id;
+	private Integer id;
 	private String name, gender, password;
 	private Date dob;
 	private String phoneno;
@@ -20,7 +20,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String email, int id, String name, String gender, String password, Date dob, String phoneno) {
+	public User(String email, Integer id, String name, String gender, String password, Date dob, String phoneno) {
 		super();
 		this.email = email;
 		this.id = id;
@@ -39,11 +39,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -11,15 +11,14 @@ import com.bus.entity.Payment;
 import com.bus.service.PaymentService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
-
+@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/payment/")
 public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 
 	@GetMapping("createTicket/{amount}")
-	public Payment createTicketTranscation(@PathVariable double amount) throws Exception {
+	public Payment createTicketTranscation(@PathVariable Double amount) throws Exception {
 		return paymentService.createTicketTranscation(amount);
 
 	}

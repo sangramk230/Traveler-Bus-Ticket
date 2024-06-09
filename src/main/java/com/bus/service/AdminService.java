@@ -34,11 +34,11 @@ public class AdminService {
 		return daoMethods.viewUser();
 	}
 
-	public List<AdminViewDetails> adminView(int id) {
+	public List<AdminViewDetails> adminView(Integer id) {
 		return daoMethods.adminView(id);
 	}
 
-	public boolean updateTicketStatus(int pid, String phoneno, String newCheckstatus) {
+	public boolean updateTicketStatus(Integer pid, String phoneno, String newCheckstatus) {
 		Ticket ticket = daoMethods.getTicketById(pid);
 		if (ticket != null) {
 			ticket.setCheckstatus(newCheckstatus);
@@ -79,7 +79,7 @@ return "\n\s\s\sTicket details \s\s\s  " + "\n\s\s\sTicket No. :" + ticket.getBu
 		return daoMethods.getTicketsByStatus("Pending");
 	}
 
-	public boolean cancelBus(int busid) {
+	public boolean cancelBus(Integer busid) {
 		return daoMethods.cancelBus(busid);
 	}
 

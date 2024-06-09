@@ -9,7 +9,7 @@ public class Checkbus {
 private Long busid;
 private Long avilableseat;
 private String contact;
-private double price;
+private Double price;
 private String bustype, busno, firstlocation, lastlocation, date, status;
 
 public Checkbus() {
@@ -48,11 +48,11 @@ public void setContact(String contact) {
 	this.contact = contact;
 }
 
-public double getPrice() {
+public Double getPrice() {
 	return this.price;
 }
 
-public void setPrice(double price) {
+public void setPrice(Double price) {
 	this.price = price;
 }
 

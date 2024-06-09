@@ -14,7 +14,7 @@ public class PaymentService {
 	private static final String SECRET_KEY = "6aD6XihHQ0dvSaDbPvcHNf1k";
 	private static final String CURRENCY = "INR";
 	
-	public Payment createTicketTranscation(double amount) throws Exception {
+	public Payment createTicketTranscation(Double amount) throws Exception {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("amount", (amount * 100));
 		jsonObject.put("currency", CURRENCY);
