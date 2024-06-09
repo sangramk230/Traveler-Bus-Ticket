@@ -20,7 +20,7 @@ import com.bus.service.TicketService;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
+@CrossOrigin("https://main--creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/ticket/")
 public class TicketController {
 	@Autowired

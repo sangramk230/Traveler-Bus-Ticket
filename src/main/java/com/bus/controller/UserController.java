@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
+@CrossOrigin("https://main--creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/user/")
 public class UserController {
 	@Autowired

@@ -11,7 +11,7 @@ import com.bus.entity.Payment;
 import com.bus.service.PaymentService;
 
 @RestController
-@CrossOrigin("https://creative-piroshki-7f24ae.netlify.app")
+@CrossOrigin("https://main--creative-piroshki-7f24ae.netlify.app")
 @RequestMapping("api/payment/")
 public class PaymentController {
 	@Autowired
